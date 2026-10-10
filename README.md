@@ -8,7 +8,7 @@
 
 ![macOS 15+](https://img.shields.io/badge/macOS-15%2B-1C1813?style=flat-square&logo=apple&logoColor=F1ECE4)
 ![Swift](https://img.shields.io/badge/Swift-SwiftUI-C9714A?style=flat-square&logo=swift&logoColor=white)
-![Release](https://img.shields.io/badge/release-coming%20soon-E2A53A?style=flat-square)
+[![Release](https://img.shields.io/github/v/release/armin-ahmadii/WhichClaude?style=flat-square&color=E2A53A&label=release)](../../releases/latest)
 
 <img src="docs/main-window.png" width="820" alt="Which Claude main window">
 
@@ -40,33 +40,36 @@ Which Claude gives each account its own copy of Claude.app running at the same t
 
 ## Install
 
-> **Prebuilt download coming soon** on the [Releases](../../releases) page. Until then, building it takes about a minute.
+**You need:** macOS 15 or later (Apple Silicon or Intel) and the [Claude desktop app](https://claude.ai/download) in `/Applications`.
 
-**You need:** macOS 15 or later, the [Claude desktop app](https://claude.ai/download) in `/Applications`, and Xcode 26 or later (free on the Mac App Store).
+1. **Download** `WhichClaude-0.1.0.zip` from the [latest release](../../releases/latest) and double-click it to unzip.
+2. **Drag `WhichClaude.app` into your Applications folder.** It needs to live there for **Launch at Login** to work.
+3. **Open it once past Gatekeeper.** Which Claude isn't notarized by Apple yet, so the first launch shows *"Apple could not verify WhichClaude…"*. Click **Done**, then go to **System Settings › Privacy & Security**, scroll down and click **Open Anyway**. You only do this once.
 
-1. **Clone the repo**
-
-   ```bash
-   git clone https://github.com/armin-ahmadii/WhichClaude.git
-   cd WhichClaude
-   ```
-
-2. **Build it**
+   Prefer Terminal? This does the same thing:
 
    ```bash
-   xcodebuild -project WhichClaude.xcodeproj -scheme WhichClaude -configuration Release -derivedDataPath build build
+   xattr -dr com.apple.quarantine /Applications/WhichClaude.app
    ```
 
-   Prefer Xcode? Open `WhichClaude.xcodeproj` and press <kbd>⌘</kbd><kbd>R</kbd>.
+<details>
+<summary><b>Build from source instead</b></summary>
 
-3. **Move it to Applications and open it**
+<br>
 
-   ```bash
-   cp -R build/Build/Products/Release/WhichClaude.app /Applications/
-   open /Applications/WhichClaude.app
-   ```
+Needs Xcode 26 or later (free on the Mac App Store).
 
-   It needs to live in `/Applications` for **Launch at Login** to work.
+```bash
+git clone https://github.com/armin-ahmadii/WhichClaude.git
+cd WhichClaude
+xcodebuild -project WhichClaude.xcodeproj -scheme WhichClaude -configuration Release -derivedDataPath build build
+cp -R build/Build/Products/Release/WhichClaude.app /Applications/
+open /Applications/WhichClaude.app
+```
+
+Or open `WhichClaude.xcodeproj` and press <kbd>⌘</kbd><kbd>R</kbd>. Apps you build yourself skip the Gatekeeper step.
+
+</details>
 
 ## Set up your accounts
 

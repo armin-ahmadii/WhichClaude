@@ -570,7 +570,7 @@ struct ContentView: View {
             Spacer()
             Toggle("Close after opening", isOn: $closeAfterOpening)
                 .toggleStyle(.checkbox)
-            Text("v0.1.0")
+            Text("v\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")")
                 .font(Theme.mono(12))
                 .padding(.leading, 12)
         }
