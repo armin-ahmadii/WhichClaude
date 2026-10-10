@@ -248,6 +248,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let store = ProfileStore()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Dock sometimes shows a blank icon for Xcode-launched builds (stale macOS icon cache).
+        NSApp.applicationIconImage = NSImage(named: "AppIcon")
         HotKeys.register { [store] index in
             guard index < store.profiles.count else { return }
             Task { await store.launch(store.profiles[index]) }
@@ -306,7 +308,7 @@ struct WhichClaudeApp: App {
             CommandGroup(replacing: .newItem) {}
         }
 
-        MenuBarExtra("Which Claude", systemImage: "sparkle") {
+        MenuBarExtra("Which Claude", systemImage: "arrow.left.arrow.right") {
             MenuContent().environmentObject(delegate.store)
         }
     }
